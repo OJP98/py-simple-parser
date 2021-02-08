@@ -9,17 +9,17 @@ class Parser:
 
     def Next(self):
         try:
-            self.current_token = next(self.tokens)
+            self.curr_token = next(self.tokens)
         except StopIteration:
-            self.current_token = None
+            self.curr_token = None
 
     def NewNumber(self):
-        number = self.current_token
+        number = self.curr_token
 
         if number.type == TokenType.LPAR:
             self.Next()
             result = self.Operation()
-            if self.current_token.type != TokenType.RPAR:
+            if self.curr_token.type != TokenType.RPAR:
                 raise Exception('No right parenthesis for expression!')
             self.Next()
             return result
@@ -31,8 +31,8 @@ class Parser:
     def NewTerm(self):
         result = self.NewNumber()
 
-        while self.current_token != None and (self.current_token.type == TokenType.MULTIPLY or self.current_token.type == TokenType.DIVISION):
-            ttype = self.current_token.type
+        while self.curr_token != None and (self.curr_token.type == TokenType.MULTIPLY or self.curr_token.type == TokenType.DIVISION):
+            ttype = self.curr_token.type
             if ttype == TokenType.DIVISION:
                 self.Next()
                 result = Division(result, self.NewNumber())
@@ -45,8 +45,8 @@ class Parser:
     def Operation(self):
         result = self.NewTerm()
 
-        while self.current_token != None and (self.current_token.type == TokenType.PLUS or self.current_token.type == TokenType.MINUS):
-            ttype = self.current_token.type
+        while self.curr_token != None and (self.curr_token.type == TokenType.PLUS or self.curr_token.type == TokenType.MINUS):
+            ttype = self.curr_token.type
             if ttype == TokenType.PLUS:
                 self.Next()
                 result = Addition(result, self.NewTerm())
@@ -57,7 +57,7 @@ class Parser:
         return result
 
     def Parse(self):
-        if self.current_token == None:
+        if self.curr_token == None:
             return None
 
         res = self.Operation()

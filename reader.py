@@ -12,47 +12,47 @@ class Reader:
 
     def Next(self):
         try:
-            self.current_char = next(self.string)
+            self.curr_char = next(self.string)
         except StopIteration:
-            self.current_char = None
+            self.curr_char = None
 
     def CreateTokens(self):
-        while self.current_char != None:
-            if self.current_char in DIGITS:
-                yield self.GenerateNumber()
-            elif self.current_char == '+':
+        while self.curr_char != None:
+            if self.curr_char in DIGITS:
+                yield self.CreateNumber()
+            elif self.curr_char == '+':
                 self.Next()
                 yield Token(TokenType.PLUS, '+')
-            elif self.current_char == '-':
+            elif self.curr_char == '-':
                 self.Next()
                 yield Token(TokenType.MINUS, '-')
-            elif self.current_char == '*':
+            elif self.curr_char == '*':
                 self.Next()
                 yield Token(TokenType.MULTIPLY, '*')
-            elif self.current_char == '/':
+            elif self.curr_char == '/':
                 self.Next()
                 yield Token(TokenType.DIVISION, '/')
-            elif self.current_char == '(':
+            elif self.curr_char == '(':
                 self.Next()
                 yield Token(TokenType.LPAR)
-            elif self.current_char == ')':
+            elif self.curr_char == ')':
                 self.Next()
                 yield Token(TokenType.RPAR)
             else:
                 raise Exception(f"Invalid character: '{self.current_char}'")
 
-    def GenerateNumber(self):
-        number = self.current_char
+    def CreateNumber(self):
+        number = self.curr_char
         self.Next()
 
-        while self.current_char != None and self.current_char in DIGITS:
-            number += self.current_char
+        while self.curr_char != None and self.curr_char in DIGITS:
+            number += self.curr_char
             self.Next()
 
         return Token(TokenType.NUMBER, int(number))
 
     def Calculate(self, tokens):
-        ops, result = [], [], []
+        ops, result = [], []
         for token in tokens:
             if token.type == TokenType.NUMBER:
                 result.append(token)
