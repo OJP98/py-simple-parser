@@ -39,7 +39,7 @@ class Reader:
                 self.Next()
                 yield Token(TokenType.RPAR)
             else:
-                raise Exception(f"Invalid character: '{self.current_char}'")
+                raise Exception(f"Invalid character: '{self.curr_char}'")
 
     def CreateNumber(self):
         number = self.curr_char
@@ -51,17 +51,3 @@ class Reader:
 
         return Token(TokenType.NUMBER, int(number))
 
-    def Calculate(self, tokens):
-        ops, result = [], []
-        for token in tokens:
-            if token.type == TokenType.NUMBER:
-                result.append(token)
-            elif token.value in SYMBOLS:
-                while ops and token.precedence < ops[-1].precedence:
-                    last = ops.pop()
-                    result.append(last)
-                ops.append(token)
-
-        ops.reverse()
-        result += ops
-        print(result)
