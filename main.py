@@ -6,5 +6,5 @@ reader = Reader(string)
 tokens = reader.GenerateTokens()
 parser = Parser(tokens)
 tree = parser.Parse()
-print(tree)
 
+print(tree)

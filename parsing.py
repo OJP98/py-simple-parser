@@ -15,6 +15,15 @@ class Parser:
 
     def NewNumber(self):
         number = self.current_token
+
+        if number.type == TokenType.LPAR:
+            self.Next()
+            result = self.Operation()
+            if self.current_token.type != TokenType.RPAR:
+                raise Exception('No right parenthesis for expression!')
+            self.Next()
+            return result
+
         if number.type == TokenType.NUMBER:
             self.Next()
             return Number(number.value)
