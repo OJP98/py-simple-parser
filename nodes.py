@@ -11,7 +11,7 @@ class OpNode():
         self.a = a
         self.b = b
         self.op = None
-    
+
     def __repr__(self):
         return f'({self.a}{self.op}{self.b})'
 
@@ -32,7 +32,7 @@ class Substraction(OpNode):
         self.op = '-'
 
 
-class Mutiplication(OpNode):
+class Multiplication(OpNode):
     def __init__(self, a, b):
         super()
         self.a = a
@@ -46,3 +46,4 @@ class Division(OpNode):
         self.a = a
         self.b = b
         self.op = '/'
+

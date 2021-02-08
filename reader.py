@@ -9,7 +9,6 @@ class Reader:
     def __init__(self, string: str):
         self.string = iter(string.replace(' ', ''))
         self.Next()
-        self.tokens = list(self.GenerateTokens())
 
     def Next(self):
         try:
@@ -52,9 +51,9 @@ class Reader:
 
         return Token(TokenType.NUMBER, int(number))
 
-    def Calculate(self):
-        nums, ops, result = [], [], []
-        for token in self.tokens:
+    def Calculate(self, tokens):
+        ops, result = [], [], []
+        for token in tokens:
             if token.type == TokenType.NUMBER:
                 result.append(token)
             elif token.value in SYMBOLS:
