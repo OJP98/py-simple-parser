@@ -21,4 +21,4 @@ class Token:
         if self.type == TokenType.NUMBER:
             return f'{self.type.name}: {self.value}'
         else:
-            return f'{self.type.name}: P{self.precedence}'
+            return f'{self.type.name}'

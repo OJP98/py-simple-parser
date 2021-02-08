@@ -16,7 +16,7 @@ class Reader:
         except StopIteration:
             self.current_char = None
 
-    def GenerateTokens(self):
+    def CreateTokens(self):
         while self.current_char != None:
             if self.current_char in DIGITS:
                 yield self.GenerateNumber()
