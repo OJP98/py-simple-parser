@@ -7,7 +7,8 @@ class TokenType(Enum):
     PLUS = 2
     DIVISION = 3
     MULTIPLY = 4
-    LPAR = 5
+    POW = 5
+    LPAR = 6
     RPAR = 6
 
 

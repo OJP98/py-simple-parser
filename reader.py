@@ -2,7 +2,6 @@ from tokens import Token, TokenType
 
 
 DIGITS = '0123456789'
-SYMBOLS = '+-*/'
 
 
 class Reader:
@@ -38,6 +37,9 @@ class Reader:
             elif self.curr_char == ')':
                 self.Next()
                 yield Token(TokenType.RPAR)
+            elif self.curr_char == '^':
+                self.Next()
+                yield Token(TokenType.POW)
             else:
                 raise Exception(f"Invalid character: '{self.curr_char}'")
 
@@ -50,4 +52,3 @@ class Reader:
             self.Next()
 
         return Token(TokenType.NUMBER, int(number))
-

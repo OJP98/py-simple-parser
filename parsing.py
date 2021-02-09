@@ -28,17 +28,26 @@ class Parser:
             self.Next()
             return Number(number.value)
 
-    def NewTerm(self):
+    def NewPow(self):
         result = self.NewNumber()
+
+        while self.curr_token != None and self.curr_token.type == TokenType.POW:
+            self.Next()
+            result = Power(result, self.NewNumber())
+
+        return result
+
+    def NewTerm(self):
+        result = self.NewPow()
 
         while self.curr_token != None and (self.curr_token.type == TokenType.MULTIPLY or self.curr_token.type == TokenType.DIVISION):
             ttype = self.curr_token.type
             if ttype == TokenType.DIVISION:
                 self.Next()
-                result = Division(result, self.NewNumber())
+                result = Division(result, self.NewPow())
             elif ttype == TokenType.MULTIPLY:
                 self.Next()
-                result = Multiplication(result, self.NewNumber())
+                result = Multiplication(result, self.NewPow())
 
         return result
 
@@ -63,4 +72,3 @@ class Parser:
         res = self.Operation()
 
         return res
-

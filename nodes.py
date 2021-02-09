@@ -47,3 +47,10 @@ class Division(OpNode):
         self.b = b
         self.op = '/'
 
+
+class Power(OpNode):
+    def __init__(self, a, b):
+        super()
+        self.a = a
+        self.b = b
+        self.op = '^'
