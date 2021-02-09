@@ -19,7 +19,7 @@ class Parser:
         if number.type == TokenType.LPAR:
             self.Next()
             result = self.Operation()
-            if self.curr_token.type != TokenType.RPAR:
+            if self.curr_token == None or self.curr_token.type != TokenType.RPAR:
                 raise Exception('No right parenthesis for expression!')
             self.Next()
             return result
