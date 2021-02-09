@@ -1,7 +1,7 @@
 from tokens import Token, TokenType
 
 
-DIGITS = '0123456789'
+DIGITS = '0123456789.'
 
 
 class Reader:
@@ -51,4 +51,4 @@ class Reader:
             number += self.curr_char
             self.Next()
 
-        return Token(TokenType.NUMBER, int(number))
+        return Token(TokenType.NUMBER, float(number))
