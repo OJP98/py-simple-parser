@@ -2,17 +2,17 @@
 Simple python parser. Parse a simple mathematical expression with vanilla python.
 
 Examples:
-> 2+3*(4 + 5.5)
-> 6/2^2
-> 12*(15+(2*3))
+* 2+3*(4 + 5.5)
+* 6/2^2
+* 12*(15+(2*3))
 
 Currently supports:
-> Addition (+)
-> Substraction (-)
-> Multiplication(*)
-> Division(/)
-> Power/Exponent (^)
-> Parenthesization ()
+* Addition (+)
+* Substraction (-)
+* Multiplication(*)
+* Division(/)
+* Power/Exponent (^)
+* Parenthesization ( )
 
 
 ## Usage
